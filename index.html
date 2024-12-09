@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Family Adventskalender">
+      <!-- Add color-scheme meta tag for system dark mode -->
+      <meta name="color-scheme" content="light dark">
+    <title>Family Adventskalender</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav id="navList" class="nav-list">
+        <!-- Dark mode toggle button -->
+        <button id="themeToggle" class="nav-button" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+        </button>
+        <button id="todayButton" class="nav-button">Heute öffnen</button>
+        <button id="calendarButton" class="nav-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+        </button>
+        <div id="calendarDropdown" class="calendar-dropdown" style="display: none;">
+            <!-- Days will be inserted here by JavaScript -->
+        </div>
+    </nav>
+         
+
+    <main>
+        <p class="intro"></p>
+        <h1><span>
+            Family</span>Advent
+        </h1>
+        <div id="sliderContainer" class="slider-container" role="region" aria-label="Advent calendar cards">
+            <div id="slider" class="slider"></div>
+        </div>
+    </main>
+
+    <div id="popup" class="popup-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="popup-content">
+            <div class="popupheader">
+            <h2 id="popupTitle" class="popup-title"></h2>
+            <button class="close-button" aria-label="Close popup" onclick="closePopup()">×</button>
+        </div>
+            <div class="imgWrapper">
+            <img id="popupImage" class="popup-image" alt="">
+                </div>
+            <div class="share-buttons">
+                <button id="shareBtn" class="share-btn share-general">Bild teilen</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container" role="alert" aria-live="polite"></div>
+
+    <div id="svgPatterns" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <!-- Pattern 1: Geometric Christmas Tree -->
+          <g id="pattern1">
+            <rect width="200" height="200" fill="#264C32"/>
+            <path d="M100 20 L140 80 L120 80 L150 130 L130 130 L170 180 H30 L70 130 L50 130 L80 80 L60 80 Z" 
+                  fill="#2d5839" opacity="0.7"/>
+            <circle cx="100" cy="60" r="6" fill="#C2E2F2" opacity="0.8"/>
+            <circle cx="85" cy="100" r="5" fill="#C2E2F2" opacity="0.8"/>
+            <circle cx="115" cy="120" r="7" fill="#C2E2F2" opacity="0.8"/>
+          </g>
+          
+          <!-- Pattern 2: Modern Ornaments -->
+          <g id="pattern2">
+            <rect width="200" height="200" fill="#6E0407"/>
+            <circle cx="50" cy="50" r="30" fill="#7a1518" opacity="0.7"/>
+            <circle cx="150" cy="150" r="40" fill="#7a1518" opacity="0.7"/>
+            <circle cx="150" cy="50" r="20" fill="#7a1518" opacity="0.7"/>
+            <circle cx="50" cy="150" r="25" fill="#7a1518" opacity="0.7"/>
+            <circle cx="100" cy="100" r="35" fill="#7a1518" opacity="0.7"/>
+          </g>
+          
+          <!-- Pattern 3: Snowflake Grid -->
+          <g id="pattern3">
+            <rect width="200" height="200" fill="#235973"/>
+            <path d="M50 50 L60 40 L50 30 L40 40 Z" fill="#2d6a86" opacity="0.8"/>
+            <path d="M150 50 L160 40 L150 30 L140 40 Z" fill="#2d6a86" opacity="0.8"/>
+            <path d="M50 150 L60 140 L50 130 L40 140 Z" fill="#2d6a86" opacity="0.8"/>
+            <path d="M150 150 L160 140 L150 130 L140 140 Z" fill="#2d6a86" opacity="0.8"/>
+            <path d="M100 100 L115 85 L100 70 L85 85 Z" fill="#2d6a86" opacity="0.8"/>
+          </g>
+          
+          <!-- Pattern 4: Gift Boxes -->
+          <g id="pattern4">
+            <rect width="200" height="200" fill="#4F2A5F"/>
+            <rect x="40" y="40" width="50" height="50" fill="#5d3570" opacity="0.7"/>
+            <rect x="110" y="110" width="50" height="50" fill="#5d3570" opacity="0.7"/>
+            <rect x="40" y="110" width="30" height="30" fill="#5d3570" opacity="0.7"/>
+            <rect x="130" y="40" width="30" height="30" fill="#5d3570" opacity="0.7"/>
+          </g>
+        </svg>
+      </div>
+
+   <!-- Theme initialization script -->
+    <script>
+        // Initialize theme based on system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark-mode');
+        }
+
+        // Add theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark-mode');
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!document.documentElement.classList.contains('dark-mode')) {
+                document.documentElement.classList.toggle('dark-mode', e.matches);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+/* Reset and Base Styles */
+:root {
+  --columns: 12;
+  --gutter: 16px;
+  --content-columns: 10;
+
+    /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  
+  /* Colors */
+  --color-primary: #e64415;
+  --color-secondary: #e5dedc;
+  --color-background: #ffffff;
+  --color-border: #ada9a9;
+  --color-text: #000000;
+  --color-muted: #f5f5f5;
+
+  
+
+
+  /* Card Colors */
+  --card-color-1: #142715;
+  --card-color-2: #667432;
+  --card-color-3: #F2F0D8;
+  --card-color-4: #E02526;
+  --card-color-5: #A11D21;
+  --card-color-6: #c12b00;
+}
+
+
+* { 
+  margin: 0;
+  padding: 0;   
+  box-sizing: border-box; 
+}
+
+.imgWrapper {
+  background-color: rgba(0, 0, 0, .3);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+
+
+img {
+  width: 100%;
+  object-fit: fill;
+}
+
+body {
+  font-family: 'Inter', serif;
+  background: var(--color-background);
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: var(--gutter);
+}
+
+/* Layout Components */
+
+main {
+  grid-column: span var(--content-columns);
+  min-height: 100vh;
+  grid-column: 1 / 13;
+}
+
+
+.slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  width: 100%;
+  margin-top: var(--space-lg);
+
+}
+
+/* Typography */
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.4rem);
+  line-height: .96;
+  position: sticky !important;
+  top: 0;
+  padding: var(--space-md);
+  text-align: center;
+  background: var(--color-background);
+  z-index: 100;
+  font-family: "Fraunces";
+  font-weight: 900;
+  color: var(--color-text);
+}
+
+.intro {
+  margin-top: 20vh;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  padding: 16px;
+  letter-spacing: -.1px;
+  color: var(--color-text);
+}
+
+h1 span {
+  font-family: "Inter";
+  font-weight: 400;
+  letter-spacing: -1.8px;
+  font-weight: 400;
+
+}
+
+.share-btn {
+  padding: 16px;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  border: none;
+  font-size: 16px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.share-btn:hover {
+  background-color: var(--color-primary);
+}
+
+/* Card Component */
+.card {
+  border-radius: 16px;
+  position: relative;
+  display: grid;
+  background-color: var(--color-secondary);
+  overflow: hidden;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s;
+  aspect-ratio: var(--card-ratio, 8/7);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, .3);
+  border: 1px solid rgba(0, 0, 0, .1);
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+
+}
+
+
+
+.card .content {
+  padding: var(--space-xs) var(--space-sm);
+  font-weight: 400;
+  border-radius: 16px;
+  font-size: 20px;
+  background-color: var(--color-text);
+  color: var(--color-background);
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+
+
+.card.locked {
+  background: var(--color-muted);
+}
+
+.card.locked::after {
+  content: "";
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  font-size: 1.5rem;
+}
+
+
+.card:nth-child(6n+1) {
+  background-color: var(--card-color-1);
+}
+
+.card:nth-child(6n+2) {
+  background-color: var(--card-color-2);
+}
+
+.card:nth-child(6n+3) {
+  background-color: var(--card-color-3);
+}
+
+.card:nth-child(6n+4) {
+  background-color: var(--card-color-4);
+}
+
+.card:nth-child(6n+5) {
+  background-color: var(--card-color-5);
+}
+
+.card:nth-child(6n+6) {
+  background-color: var(--card-color-6);
+}
+
+
+.card.selected {
+  animation: pulse-shake .6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.card today {
+  transform: scale(1.02);
+  animation: pulse-shake .6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes pulse-shake {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.02) rotate(0deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+
+/* Navigation Component */
+.nav-list {
+  display: grid;
+  grid-template-columns: auto 164px auto;
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translate(-50%); /* Changed from 50% to -50% */
+  background: var(--color-background);
+  padding: 8px 8px;
+  gap: var(--space-xs);
+  z-index: 100;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, .1);
+}
+
+.nav-button {
+  width: 100%;
+  background: var(--color-secondary);
+  padding: 8px;
+  border-radius: 16px;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-text);
+  cursor: pointer;
+  border: none;
+  z-index: 1000;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.nav-button:hover {
+  background:  var(--color-primary);
+  color: var(--color-text);
+}
+
+/*.nav-button.active {
+  background: var(--color-primary);
+  color: var(--color-background);
+}
+*/
+
+.calendar-dropdown {
+  position: fixed;  /* Change to fixed positioning */
+  bottom: 60px;    /* Adjust this value based on your navlist height + desired spacing */
+  padding: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 101;    /* Keep it above the navlist */
+  background: var(--color-background); /* Add background if needed */
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-bottom: none;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+  gap: 8px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.calendar-dropdown button {
+  font-size: 16px;
+  padding: 8px;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  border-radius: 200px;
+  border: none;
+}
+
+.calendar-dropdown button:hover {
+  background-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* Popup Component */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: var(--space-lg);
+}
+
+.popup-content {
+  background: var(--color-background);
+  color: var(--color-text);
+  padding: var(--space-sm);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+#popupImage {
+  width: 100%;
+}
+
+.popupheader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.close-button {
+  position: relative;
+  min-width: 40px;
+  min-height: 40px;
+  background-color: var(--color-background);
+  border: none;
+  border-radius: 400px;
+  color: var(--color-text);
+  font-size: 28px;
+  font-weight: 400;
+  cursor: pointer !important;
+  font-family: 'Inter';
+}
+
+.close-button:hover {
+  background-color: var(--color-secondary);
+}
+
+.popup-title {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+/* Toast Component */
+.toast-container {
+  position: fixed;
+  top: 121px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  min-width: 294px;
+}
+
+.toast {
+  background: var(--color-text);
+  color: var(--color-background);
+  padding: var(--space-sm) var(--space-xs);
+  border-radius: 16px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0;
+  transform: translateY(-100%);
+  cursor: pointer;
+  margin-top: 8px;
+  letter-spacing: -.3px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease-out;
+}
+
+/* Mobile Layout */
+@media (max-width: 1023px) {
+  body {
+    display: block;
+  }
+
+  h1 {
+    letter-spacing: -1.5px;
+    padding: var(--space-md);
+
+  }
+
+  .intro {
+    font-size: 18px;
+    margin-top: 10vh;
+    padding: 0 25vw;
+  }
+
+  .nav-list {
+    bottom: 8px;
+  }
+  
+  .toast-container {
+    top: 88px;
+  }
+
+  .slider {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xs);
+    padding: var(--space-xs);
+    padding-bottom: 100px;
+    z-index: 1;
+  }
+
+  /* Mobile Masonry Grid Variations */
+  .card {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: var(--card-ratio, 3/4);
+  }
+
+  .card .content {
+    font-size: 18px;
+  }
+
+  .card:nth-child(6n+1) {
+    grid-column: span 2;
+    --card-ratio: 16/9;
+  }
+
+
+
+  .popup-overlay {
+    padding: var(--space-sm);
+  }
+}
+
+.popup-title {
+  font-size: 20px;
+}
+
+/* Desktop Card Grid Variations */
+@media (min-width: 1024px) {
+
+  .toast {
+    margin-top: 16px;
+
+  }
+
+  .card:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .card:nth-child(8n+3) {
+    grid-row: span 2;
+    grid-column: span 2 ;
+  }
+
+  .card:nth-child(12n+8) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+  }
+
+  /*.card:hover:not(.locked) {
+    transform: scale(1.02);
+  }*/
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.dark-mode) {  /* Only apply if manual dark mode is not enabled */
+    /* your dark mode variables */
+  --color-primary: #6836be;
+  --color-secondary: #e5dedc;
+  --color-background: #ffffff;
+  --color-border: #ada9a9;
+  --color-text: #000000;
+  --color-muted: #f5f5f5;
+  }
+}
+
+/* Manual toggle dark mode */
+:root.dark-mode {
+  --color-primary: #6836be;
+  --color-secondary: #2a2422;
+  --color-background: #121212;
+  --color-border: #404040;
+  --color-text: #ffffff;
+  --color-muted: #1a1a1a;
+  /* same dark mode variables */
+}
+
+/*TESTCODE*/
+/* Add the open button styling using ::after */
+.card:not(.locked):hover::after,
+.card:not(.locked).selected::after {
+  content: 'Öffnen';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-text);
+  color: var(--color-background);
+  padding: 14px 16px;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 0;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Add overlay effect when hovering */
+.card:not(.locked):hover::before,
+.card:not(.locked).selected::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
