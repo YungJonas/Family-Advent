@@ -3,13 +3,13 @@ const CONFIG = {
     CARDS_COUNT: 24,
     TOAST_DURATION: 2000,
     TITLES: [
-        "Snaccident", "Bitte lassen Sie das!", "Aperol Approve",
-        "Absoluter Alman", "Naschkan", "Steakholder Management?", "Back to Work Like",
-        "Hat jemand Party gesagt?", "404 Energy Not Found", "9:00 Uhr Meetings?",
-        "Deadline Approaching", "Bug Fixed Successfully", "When Tests Pass", "Code Review Time",
-        "Production Deploy Day", "Weekend Warrior", "Monday.exe Stopped Working", "Pizza Time!",
+        "Hallo, bittschön! Salat, alles?", "Kastelruther Atzen", "Fahrlehrer Pepe",
+        "Immer rein mit dem Wein", "All you can fluff", "Ed von Schleck", "3 Bier sind eine Mahlzeit",
+        "Hat jemand Party gesagt?", "Das blühende Leben", "3 Touristen in Hamburg?",
+        "Firsty Safe am Strand", "Send help", "Gleiche Blondierung", "1 Kg geplfückt, 3 Kg gegessen",
+        "Isemarkt Double Trouble", "Weekend Warrior", "Monday.exe Stopped Working", "Pizza Time!",
         "Git Push --Force", "npm Install Universe", "AI Taking Over", "Rubber Duck Debug",
-        "CSS Position: Absolute", "Console.log Everything"
+        "CSS Position: Absolute", "Merry Crisis"
     ],
     
 };
@@ -64,8 +64,8 @@ const DOM = {
 // Utils
 const utils = {
     getCurrentDay() {
-        //return new Date().getDate();
-        return 24;
+        return new Date().getDate();
+        //return 24;
     },
 
     getTimeUntilUnlock(targetDay) {
