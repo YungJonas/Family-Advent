@@ -9,7 +9,7 @@ const CONFIG = {
         "Firsty Safe am Strand", "Send help", "Gleiche Blondierung", "1 Kg geplfückt, 3 Kg gegessen",
         "Isemarkt Double Trouble", "Baywatch Aarhus", "Knödel-Trio", "Peek a Bo",
         "Gute Gespräche", "Bergziegen in freier Natur", "Familie Vogel-Jahn",
-        "Traum von Amsterdam", "Merry Crisis"
+        "Traum von Amsterdam", "Air Jail", "Merry Crisis"
     ],
     
 };
