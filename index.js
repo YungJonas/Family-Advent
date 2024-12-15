@@ -7,9 +7,9 @@ const CONFIG = {
         "Immer rein mit dem Wein", "All you can fluff", "Ed von Schleck", "3 Bier sind eine Mahlzeit",
         "Hat jemand Party gesagt?", "Das blühende Leben", "3 Touristen in Hamburg?",
         "Firsty Safe am Strand", "Send help", "Gleiche Blondierung", "1 Kg geplfückt, 3 Kg gegessen",
-        "Isemarkt Double Trouble", "Weekend Warrior", "Monday.exe Stopped Working", "Pizza Time!",
-        "Git Push --Force", "npm Install Universe", "AI Taking Over", "Rubber Duck Debug",
-        "CSS Position: Absolute", "Merry Crisis"
+        "Isemarkt Double Trouble", "Baywatch Aarhus", "Knödel-Trio", "Peek a Bo",
+        "Gute Gespräche", "Bergziegen in freier Natur", "Familie Vogel-Jahn",
+        "Traum von Amsterdam", "Merry Crisis"
     ],
     
 };
