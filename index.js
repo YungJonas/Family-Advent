@@ -64,8 +64,8 @@ const DOM = {
 // Utils
 const utils = {
     getCurrentDay() {
-        //return new Date().getDate();
-        return 26;
+        return new Date().getDate();
+        //return 26;
     },
 
     getTimeUntilUnlock(targetDay) {
